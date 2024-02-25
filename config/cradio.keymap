@@ -13,11 +13,10 @@
     behaviors {
         ht: hold_tap {
             compatible = "zmk,behavior-hold-tap";
+            label = "homerow mods";
             #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <280>;
-            quick-tap-ms = <175>;
-            require-prior-idle-ms = <150>;
+            tapping-term-ms = <225>;
+            flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
     };
@@ -26,17 +25,19 @@
         compatible = "zmk,keymap";
         default_layer {
             bindings = <
+
+	    // QWERY
         //╭──────────┬──────────┬──────────┬──────────┬─────────────╮   ╭─────────────┬──────────┬──────────┬──────────┬──────────╮
-        //│  Q       │  W       │  F       │  P       │ B           │   │  J          │  L       │  U       │  Y       │  ; :     │
-            &kp Q      &kp W      &kp F      &kp P      &kp B             &kp J         &kp L      &kp U      &kp Y      &kp SEMI 
+        //│  Q       │  W       │  E       │  R       │  T          │   │  Y          │  U       │  I       │  O       │  P       │
+             &kp Q      &kp W      &kp E      &kp R      &kp T             &kp Y         &kp U      &kp I      &kp O      &kp P
         //├──────────┼──────────┼──────────┼──────────┼─────────────┤   ├─────────────┼──────────┼──────────┼──────────┼──────────┤
-        //│  A       │  R       │  S       │  T       │  G          │   │  M          │  N       │  E       │  I       │ O      │
-            HRML(A,        R,         S,         T)     &kp G             &kp M         HRMR(N,        E,         I,        O)
+        //│  A       │  S       │  D       │  F       │  G          │   │  H          │  J       │  K       │  L       │ : ;      │
+             HRML(A,        S,         D,         F)     &kp G             &kp H         HRMR(J,        K,         L,        SEMI)
         //├──────────┼──────────┼──────────┼──────────┼─────────────┤   ├─────────────┼──────────┼──────────┼──────────┼──────────┤
-        //│  Z       │  X       │  C       │  D       │  V          │   │  K          │  H       │ , <      │ . >      │ / ?      │
-            &kp Z      &kp X      &kp C      &kp D      &kp V             &kp K         &kp H      &kp COMMA  &kp DOT    &kp FSLH
+        //│  Z       │  X       │  C       │  V       │  B          │   │  N          │  M       │ , <      │ . >      │ / ?      │
+             &kp Z      &kp X      &kp C      &kp V      &kp B             &kp N         &kp M      &kp COMMA  &kp DOT    &kp FSLH
         //╰──────────┴──────────┴──────────┼──────────┼─────────────┤   ├─────────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &lt 3 CAPS &lt 1 BSPC       &lt 2 SPACE   &lt 1 ENTER
+        //                                    &lt 3 TAB  &lt 1 BSPC        &lt 2 SPACE   &lt 1 ENTER
         //                                 ╰──────────┴─────────────╯   ╰─────────────┴──────────╯
             >;
         };
@@ -51,7 +52,7 @@
             HRML(ESC ,     ESC,       ESC,       ESC)       &trans          &kp LPAR      &kp N4     &kp N5     &kp N6     &kp RPAR
         //├──────────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────────┼──────────┼──────────┼──────────┼─────────┤
         //│              │          │          │          │          │   │ {            │ 1        │ 2        │ 3        │ }       │
-            &trans          &trans      &trans      &trans      &trans          &kp LBRC      &kp N1     &kp N2     &kp N3     &kp RBRC 
+            &trans          &trans      &trans      &trans      &trans          &kp LBRC      &kp N1     &kp N2     &kp N3     &kp RBRC
         //╰──────────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────────┼──────────┼──────────┴──────────┴─────────╯
                                                   &trans      &trans         &kp ESC        &kp N0
         //                                     ╰──────────┴──────────╯   ╰──────────────┴──────────╯
@@ -65,7 +66,7 @@
             &kp TILDE   &kp BSLH  &kp CARET   &kp STAR  &kp PRCNT      &trans      &trans         &trans      &trans      &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼─────────────┼──────────┼──────────┼──────────┤
         //│  +       │  -       │  _       │  =       │  |       │   │          │             │          │          │          │
-            &kp PLUS    &kp MINUS  &kp UNDER  &kp EQUAL  &kp PIPE      &trans      HRMR(ESC,     ESC,       ESC,       ESC) 
+            &kp PLUS    &kp MINUS  &kp UNDER  &kp EQUAL  &kp PIPE      &trans      HRMR(ESC,     ESC,       ESC,       ESC)
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼─────────────┼──────────┼──────────┼──────────┤
         //│  !       │  @       │ #        │  &       │  $       │   │          │             │          │          │          │
             &kp EXCL    &kp AT    &kp HASH    &kp AMPS   &kp DLLR       &trans     &trans        &trans     &trans     &trans
@@ -85,7 +86,7 @@
             HRML(ESC ,     ESC,       ESC,       ESC)       &trans          &kp LEFT      &kp DOWN   &kp UP     &kp RIGHT  &kp RPAR
         //├──────────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────────┼──────────┼──────────┼──────────┼─────────┤
         //│              │          │          │          │          │   │ {            │ 1        │ 2        │ 3        │ }       │
-            &trans          &trans      &trans      &trans      &trans          &kp LBRC      &kp N1     &kp N2     &kp N3     &kp RBRC 
+            &trans          &trans      &trans      &trans      &trans          &kp LBRC      &kp N1     &kp N2     &kp N3     &kp RBRC
         //╰──────────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────────┼──────────┼──────────┴──────────┴─────────╯
                                                   &trans      &trans         &kp CAPS        &kp N0
         //                                     ╰──────────┴──────────╯   ╰──────────────┴──────────╯
@@ -94,16 +95,16 @@
     };
 };
 
-	// QWERY
+        // Colemark
         //╭──────────┬──────────┬──────────┬──────────┬─────────────╮   ╭─────────────┬──────────┬──────────┬──────────┬──────────╮
-        //│  Q       │  W       │  E       │  R       │  T          │   │  Y          │  U       │  I       │  O       │  P       │
-        //   &kp Q      &kp W      &kp E      &kp R      &kp T             &kp Y         &kp U      &kp I      &kp O      &kp P
+        //│  Q       │  W       │  F       │  P       │ B           │   │  J          │  L       │  U       │  Y       │  ; :     │
+        //  &kp Q      &kp W      &kp F      &kp P      &kp B             &kp J         &kp L      &kp U      &kp Y      &kp SEMI
         //├──────────┼──────────┼──────────┼──────────┼─────────────┤   ├─────────────┼──────────┼──────────┼──────────┼──────────┤
-        //│  A       │  S       │  D       │  F       │  G          │   │  H          │  J       │  K       │  L       │ : ;      │
-        //   HRML(A,        S,         D,         F)     &kp G             &kp H         HRMR(J,        K,         L,        SEMI)
+        //│  A       │  R       │  S       │  T       │  G          │   │  M          │  N       │  E       │  I       │ O      │
+        //  HRML(A,        R,         S,         T)     &kp G             &kp M         HRMR(N,        E,         I,        O)
         //├──────────┼──────────┼──────────┼──────────┼─────────────┤   ├─────────────┼──────────┼──────────┼──────────┼──────────┤
-        //│  Z       │  X       │  C       │  V       │  B          │   │  N          │  M       │ , <      │ . >      │ / ?      │
-        //   &kp Z      &kp X      &kp C      &kp V      &kp B             &kp N         &kp M      &kp COMMA  &kp DOT    &kp FSLH
+        //│  Z       │  X       │  C       │  D       │  V          │   │  K          │  H       │ , <      │ . >      │ / ?      │
+        //  &kp Z      &kp X      &kp C      &kp D      &kp V             &kp K         &kp H      &kp COMMA  &kp DOT    &kp FSLH
         //╰──────────┴──────────┴──────────┼──────────┼─────────────┤   ├─────────────┼──────────┼──────────┴──────────┴──────────╯
-        //                                    &lt 3 TAB  &lt 1 BSPC        &lt 2 SPACE   &lt 1 ENTER
+        //                                   &lt 3 CAPS &lt 1 BSPC       &lt 2 SPACE   &lt 1 ENTER
         //                                 ╰──────────┴─────────────╯   ╰─────────────┴──────────╯
